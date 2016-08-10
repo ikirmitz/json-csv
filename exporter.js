@@ -55,6 +55,8 @@ exporter.prototype.getHeaderRow = function() {
     } else {
       line += self.fieldSeparator
     }
+    if (field.skip) return line;
+
     line += self.prepValue(label)
     return line
   }, 'START')
@@ -70,6 +72,7 @@ exporter.prototype.getBodyRow = function(data) {
     } else {
       line += self.fieldSeparator
     }
+    if (field.skip) return line;
     var val = self.getValue(data, field.name)
     if (field.filter) {
       val = field.filter(val)
